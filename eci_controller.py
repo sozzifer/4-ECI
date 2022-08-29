@@ -28,7 +28,8 @@ def update_histogram(value, conf_level):
     fig.update_yaxes(title_text=None,
                      range=[0, quant_y_range[value]])
     fig.update_layout(margin=dict(t=20, b=10, l=20, r=20),
-                      font_size=14)
+                      font_size=14,
+                      dragmode=False)
     mean = np.mean(df)
     sem = stat.sem(df)
     conf_int = stat.norm.interval(
@@ -48,16 +49,14 @@ def add_ci_lines(fig, value, ci_lower, ci_upper):
                    marker_opacity=0,
                    marker_color="#0085a1",
                    name="Confidence<br>interval<br>(upper/lower<br>bounds)",
-                   hovertemplate="CI lower bound: %{x:.3f}<extra></extra>")
-    )
+                   hovertemplate="CI lower bound: %{x:.3f}<extra></extra>"))
     fig.add_trace(
         go.Scatter(x=[ci_upper] * 10,
                    y=y,
                    marker_opacity=0,
                    marker_color="#0085a1",
                    hovertemplate="CI upper bound: %{x:.3f}<extra></extra>",
-                   showlegend=False)
-    )
+                   showlegend=False))
     return fig
 
 
@@ -106,7 +105,8 @@ def update_bar(value, conf_level, category):
                                  marker_opacity=0.6)])
     fig.update_layout(barmode="stack",
                       margin=dict(t=20, b=10, l=20, r=20),
-                      font_size=14)
+                      font_size=14,
+                      dragmode=False)
     fig.update_yaxes(title_text=None,
                      range=[0, (y1+y2)+1])
     x = y1
@@ -135,5 +135,5 @@ def update_bar(value, conf_level, category):
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=8080, dev_tools_ui=False)
-    # app.run(debug=True)
+    # app.run(debug=False, host="0.0.0.0", port=8080, dev_tools_ui=False)
+    app.run(debug=True)

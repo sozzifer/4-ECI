@@ -1,3 +1,6 @@
-gcloud builds submit --tag gcr.io/stat4002/confidence-intervals  --project=stat4002
+# 4-ECI
+Confidence intervals
 
-gcloud run deploy --image gcr.io/stat4002/confidence-intervals --platform managed  --project=stat4002 --allow-unauthenticated
+Python version 3.10
+
+To run, create a Python virtual environment and install the packages as specified in requirements.txt using pip install -r requirements.txt
